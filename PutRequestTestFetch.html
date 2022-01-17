@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="">ID</label>
+        <input type="text" name="id" id="id" style="margin-left: 60px"><br><br>
+        <label for="">Name</label>
+        <input type="text" name="name" id="name" style="margin-left: 40px"> <br> <br>
+        <label for="">Email</label>
+        <input type="email" name="email" id="email" style="margin-left: 40px"> <br> <br>
+        <label for="">Password</label>
+        <input type="password" name="password" id="password"> <br> <br>
+        <button type="button" id="update">Update</button>
+    </form>
+    <script>
+        alert("Test");
+        let update = document.getElementById('update');
+        alert(update);
+        update.onclick = function() {
+        let id = document.getElementById('id').value;
+        alert(id);
+            let data = {          
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            }
+
+            fetch("http://127.0.0.1:8000/api/user/" +id, {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: {"Content-Type": "Application/json"}
+            })
+            .then(response => response.json());  
+            console.log("Till here aal is well!");
+        }
+        </script>
+</body>
+</html>
+
+
+
+
+

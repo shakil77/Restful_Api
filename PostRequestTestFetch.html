@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="">
+        <label for="">Name</label>
+        <input type="text" name="" id="name" style="margin-left: 40px"> <br> <br>
+        <label for="">Email</label>
+        <input type="email" name="" id="email" style="margin-left: 40px"> <br> <br>
+        <label for="">Password</label>
+        <input type="password" name="" id="password"> <br> <br>
+        <button type="button" onclick="save_data()">Save</button>
+    </form>
+    <script>
+        function save_data() {
+            const data = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
+        };
+
+        fetch('http://127.0.0.1:8000/api/user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        }).then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        alert("Till here aal is well!");
+        }
+        //  function postData(url = '', data = {}) {
+        //     const response =  fetch(url, {
+        //         method: 'POST',
+        //         mode: 'cors',
+        //         cache: 'no-cache',
+        //         credentials: 'same-origin',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         redirect: 'follow',
+        //         referrerPolicy: 'no-referrer',
+        //         body: JSON.stringify(data)
+        //     });
+        //     return response.json();
+        // }
+
+        // postData('http://127.0.0.1:8000/api/user')
+        // .then (data => {
+        //     console.log(data);
+        // });
+
+        // document.write("Till now! Aal is well");
+    </script>
+</body>
+</html>
